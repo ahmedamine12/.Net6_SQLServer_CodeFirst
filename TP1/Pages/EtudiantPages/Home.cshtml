@@ -1,0 +1,101 @@
+@page
+@model TP1.Pages.EtudiantPages.IndexModel
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - TP1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/TP1.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/Home.css">
+    <!-- Adding Bootstrap's JavaScript dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<h2>Etudiants List</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var etudiant in Model.Etudiants)
+    {
+        <tr>
+            <td>@etudiant.Id</td>
+            <td>@etudiant.Nom</td>
+            <td>@etudiant.Prenom</td>
+            <td class="action-buttons">
+                <a href="#" class="btn btn-primary btn-sm" onclick="showEditForm(@etudiant.Id, '@etudiant.Nom', '@etudiant.Prenom')">Edit</a>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@etudiant.Id" style="display: inline-block;">
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Add New Etudiant</h2>
+<form method="post">
+    <div class="form-group">
+        <label>Nom:</label>
+        <input asp-for="NewEtudiant.Nom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Prenom:</label>
+        <input asp-for="NewEtudiant.Prenom" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add Etudiant" class="btn btn-success" />
+    </div>
+</form>
+
+<!-- Modal for Edit -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Etudiant</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-page-handler="Edit">
+                    <input asp-for="EditEtudiant.Id" hidden />
+                    <div class="mb-3">
+                        <label asp-for="EditEtudiant.Nom" class="form-label"></label>
+                        <input asp-for="EditEtudiant.Nom" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EditEtudiant.Prenom" class="form-label"></label>
+                        <input asp-for="EditEtudiant.Prenom" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showEditForm(id, nom, prenom) {
+        document.querySelector("input[name='EditEtudiant.Id']").value = id;
+        document.querySelector("input[name='EditEtudiant.Nom']").value = nom;
+        document.querySelector("input[name='EditEtudiant.Prenom']").value = prenom;
+
+        var myModal = new bootstrap.Modal(document.getElementById('editModal'));
+        myModal.show();
+    }
+</script>
+</body>

@@ -1,0 +1,101 @@
+/* Styles for Etudiants List page */
+
+/* Style for the page's header */
+h2 {
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: 600;
+}
+
+/* Styles for the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+table thead th {
+    background-color: #f4f4f4;
+    padding: 10px;
+    font-weight: bold;
+    border: 1px solid #e1e1e1;
+}
+
+table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+table tbody td {
+    padding: 8px;
+    border: 1px solid #e1e1e1;
+}
+
+/* Style for action links in the table */
+table tbody td a {
+    color: #0077cc;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+table tbody td a:last-child {
+    margin-right: 0;
+}
+
+table tbody td a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for the form */
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: inline-block;
+    min-width: 100px;
+    font-weight: 600;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form select,
+form textarea {
+    padding: 5px;
+    width: 250px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form input[type="submit"] {
+    background-color: #0077cc;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #005fa3;
+}
+.action-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.action-buttons a,
+.action-buttons button {
+    margin-right: 10px; /* espace entre les boutons */
+}
+
+/* Ajouter d'autres styles au besoin */
+

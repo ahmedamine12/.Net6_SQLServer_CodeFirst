@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using MyAPIProject.Data;
+using TP1.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
